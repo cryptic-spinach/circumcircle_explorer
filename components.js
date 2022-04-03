@@ -20,19 +20,44 @@ class SitePair {
     getMidpoint() {
         let midx = (this.site_1.x + this.site_2.x)/2;
         let midy = (this.site_1.y + this.site_2.y)/2;
-        return createVector(midx, midy);
+        return new Site(midx, midy);
     }
 
-    getPerpendicular() {
-        return this.getSlope().rotate(-PI/2)
+    getNumericSlope(vec) {
+        return vec.y/vec.x;
     }
 
-    getSlope() {
+    getPerpendicularVec() {
+        return this.getSlopeVec().rotate(-PI/2)
+    }
+
+    getSlopeVec() {
         return createVector(this.site_2.x - this.site_1.x, this.site_2.y - this.site_1.y);
     }
 
+    getStandardForm() {
+        let A;
+        let B;
+        let C;
+
+        let perpendicularVec = this.getSlopeVec();
+
+        if (perpendicularVec.x == 0) {
+            A = 1;
+            B = 0;
+            C = this.site_1.x;
+        }
+        else {
+            A = -this.getNumericSlope(perpendicularVec);
+            B = 1;
+            C = -this.getNumericSlope(perpendicularVec) * this.site_1.x + this.site_1.y;
+        }
+
+        return {A: A, B: B, C: C}
+    }
+
     drawBisector() {
-        let perpendicular = this.getPerpendicular();
+        let perpendicular = this.getPerpendicularVec();
         let midpoint = this.getMidpoint();
         drawLine(midpoint, perpendicular, 'orange');
     }
@@ -63,7 +88,6 @@ function drawArrow(base, vec, myColor) {
     translate(base.x, base.y);
     vec.setMag(edgeLength)
     line(-vec.x, -vec.y, vec.x, vec.y);
-    rotate(vec.heading());
 
     pop();
   }
