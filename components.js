@@ -15,6 +15,7 @@ class SitePair {
     constructor (site_1, site_2) {
         this.site_1 = site_1;
         this.site_2 = site_2;
+        this.coeffiecients = this.getStandardForm();
     }
     
     getMidpoint() {
@@ -40,54 +41,60 @@ class SitePair {
         let B;
         let C;
 
-        let perpendicularVec = this.getSlopeVec();
+        let perpendicularVec = this.getPerpendicularVec();
+        let midpoint = this.getMidpoint()
 
         if (perpendicularVec.x == 0) {
             A = 1;
             B = 0;
-            C = this.site_1.x;
+            C = midpoint.x;
         }
         else {
             A = -this.getNumericSlope(perpendicularVec);
             B = 1;
-            C = -this.getNumericSlope(perpendicularVec) * this.site_1.x + this.site_1.y;
+            C = -this.getNumericSlope(perpendicularVec) * midpoint.x + midpoint.y;
         }
 
-        return {A: A, B: B, C: C}
+        return {A: A, B: B, C: C};
     }
 
     drawBisector() {
         let perpendicular = this.getPerpendicularVec();
         let midpoint = this.getMidpoint();
-        drawLine(midpoint, perpendicular, 'orange');
+        this.drawLine(midpoint, perpendicular, 'orange');
+    }
+
+    drawLine(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(2);
+        fill(myColor);
+    
+        translate(base.x, base.y);
+        vec.setMag(edgeLength)
+        line(-vec.x, -vec.y, vec.x, vec.y);
+    
+        pop();
     }
 }
 
-function drawArrow(base, vec, myColor) {
-    push();
-    stroke(myColor);
-    strokeWeight(3);
-    fill(myColor);
+class Intersection {
+    constructor (pair_1, pair_2) {
+        this.pair_1 = pair_1;
+        this.pair_2 = pair_2;
+    }
 
-    translate(base.x, base.y);
-    line(0, 0, vec.x, vec.y);
-    rotate(vec.heading());
+    getIntersection() {
+        let A = math.matrix([[this.pair_1.coeffiecients.A, this.pair_1.coeffiecients.B], [this.pair_2.coeffiecients.A, this.pair_2.coeffiecients.B]])
+        let Ainv = math.inv(A)
+        let b = math.matrix([[this.pair_1.coeffiecients.C],[this.pair_2.coeffiecients.C]])
+        let Ainvb = math.multiply(Ainv, b);
 
-    let arrowSize = 7;
-    translate(vec.mag() - arrowSize, 0);
-    triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
-    pop();
-  }
+        fill(255);
+        stroke(255);
+        ellipse(Ainvb._data[0][0], Ainvb._data[1][0], 20, 20);
 
-  function drawLine(base, vec, myColor) {
-    push();
-    stroke(myColor);
-    strokeWeight(2);
-    fill(myColor);
-
-    translate(base.x, base.y);
-    vec.setMag(edgeLength)
-    line(-vec.x, -vec.y, vec.x, vec.y);
-
-    pop();
-  }
+        return Ainvb._data
+    }
+}
+  

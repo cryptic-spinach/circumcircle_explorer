@@ -1,12 +1,10 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  edgeLength = Math.sqrt(Math.pow(windowWidth/2, 2) + Math.pow(windowHeight/2, 2))
-  site_A = new Site(-400, 200);
+  edgeLength = Math.sqrt(Math.pow(windowWidth, 2) + Math.pow(windowHeight, 2))
+  site_A = new Site(350, 200);
   site_B = new Site(-400, -200);
+  site_C = new Site(500, -100);
 
-  let tempPoint = new SitePair(site_A, site_B);
-  console.log(tempPoint.getStandardForm());
-  
 }
   
 function draw() {
@@ -14,13 +12,20 @@ function draw() {
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
   
-
-  site_B.x = mouseX - windowWidth/2
-  site_B.y = -mouseY + windowHeight/2;
+  // site_B.x = mouseX - windowWidth/2
+  // site_B.y = -mouseY + windowHeight/2;
 
   site_A.show();
   site_B.show();
+  site_C.show();
 
-  let tempPoint = new SitePair(site_A, site_B);
-  tempPoint.drawBisector();
+  let tempAB = new SitePair(site_A, site_B);
+  tempAB.drawBisector();
+
+  let tempBC = new SitePair(site_B, site_C);
+  tempBC.drawBisector();
+
+  let tmpI= new Intersection(tempAB, tempBC);
+  tempIntersection = tmpI.getIntersection();
+
 }
