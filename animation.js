@@ -1,7 +1,8 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  site_A = new Site(15, 10);
-  site_B = new Site(-123, 310);
+  edgeLength = Math.sqrt(Math.pow(windowWidth/2, 2) + Math.pow(windowHeight/2, 2))
+  site_A = new Site(0, 0);
+  site_B = new Site(0, 0);
 }
   
 function draw() {
@@ -16,6 +17,5 @@ function draw() {
   site_A.show();
   site_B.show();
 
-  let tempPoint = new SitePair(site_A, site_B).getBisector();
-
+  let tempPoint = new SitePair(site_A, site_B).drawBisector();
 }

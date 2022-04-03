@@ -31,13 +31,10 @@ class SitePair {
         return createVector(this.site_2.x - this.site_1.x, this.site_2.y - this.site_1.y);
     }
 
-    getBisector() {
-        // let slope = this.getSlope();
+    drawBisector() {
         let perpendicular = this.getPerpendicular();
         let midpoint = this.getMidpoint();
-        drawLine(midpoint, perpendicular, 'green');
-        // drawArrow(this.site_1, slope, 'green');
-        // drawArrow(midpoint, perpendicular, 'green');
+        drawLine(midpoint, perpendicular, 'orange');
     }
 }
 
@@ -60,10 +57,11 @@ function drawArrow(base, vec, myColor) {
   function drawLine(base, vec, myColor) {
     push();
     stroke(myColor);
-    strokeWeight(3);
+    strokeWeight(2);
     fill(myColor);
 
     translate(base.x, base.y);
+    vec.setMag(edgeLength)
     line(-vec.x, -vec.y, vec.x, vec.y);
     rotate(vec.heading());
 
