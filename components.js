@@ -120,6 +120,7 @@ class Intersection {
         } 
         else {
             intersection = null;
+            return null;
         }
 
         return createVector(intersection._data[0][0], intersection._data[1][0]);
