@@ -21,13 +21,10 @@ function draw() {
   site_A.show();
   site_B.show();
   site_C.show();
-  
-  site_A.x = mouseX - windowWidth/2
-  site_A.y = -mouseY + windowHeight/2;
 
-  let AB = new SitePair(site_A, site_B);
-  let BC = new SitePair(site_B, site_C);
-  let CA = new SitePair(site_A, site_C);
+  AB = new SitePair(site_A, site_B);
+  BC = new SitePair(site_B, site_C);
+  CA = new SitePair(site_A, site_C);
 
   ABC = new Intersection(AB, BC);
   BCA = new Intersection(BC, CA);

@@ -139,11 +139,13 @@ class Intersection {
     drawBisectorFromIntersection(show_1, show_2) {
         let perpendicular = this.pair_1.getPerpendicularVec();
         let intersection = this.getIntersection();
-        if (show_1) {
-            this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
-        }
-        if (show_2) {
-            this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
+        if (intersection != null) {
+            if (show_1) {
+                this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
+            }
+            if (show_2) {
+                this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
+            }
         }
     }
 

@@ -6,6 +6,7 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
-function mousePressed() {
-    resizeCanvas(windowWidth, windowHeight);
+function mouseDragged() {
+    site_A.x = mouseX - windowWidth/2
+    site_A.y = -mouseY + windowHeight/2;
 }
