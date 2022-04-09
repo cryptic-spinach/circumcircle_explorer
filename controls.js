@@ -7,6 +7,6 @@ function windowResized() {
 }
 
 function mouseDragged() {
-    site_A.x = mouseX - windowWidth/2
-    site_A.y = -mouseY + windowHeight/2;
+    site_C.x = mouseX - windowWidth/2
+    site_C.y = -mouseY + windowHeight/2;
 }

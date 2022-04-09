@@ -8,19 +8,23 @@ function setup() {
   // site_B = new Site(random(min, max), random(min, max));
   // site_C = new Site(random(min, max), random(min, max));
 
-  site_A = new Site(350, 200);
-  site_B = new Site(-400, -200);
-  site_C = new Site(500, -100);
+  site_A = new Site(350, 200, 'A');
+  site_B = new Site(-400, -200, 'B');
+  site_C = new Site(500, -100, 'C');
 }
   
 function draw() {
-  background(0);
+  background(25);
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
 
   site_A.show();
   site_B.show();
   site_C.show();
+
+  site_A.showLabel();
+  site_B.showLabel();
+  site_C.showLabel();
 
   AB = new SitePair(site_A, site_B);
   BC = new SitePair(site_B, site_C);
@@ -30,9 +34,9 @@ function draw() {
   BCA = new Intersection(BC, CA);
   CAB = new Intersection(CA, AB);
 
-  ABC.drawBisectorFromIntersection(true, false);
-  BCA.drawBisectorFromIntersection(true, false);
-  CAB.drawBisectorFromIntersection(false, true);
+  ABC.drawBisectorFromIntersection(true, true);
+  //BCA.drawBisectorFromIntersection(true, true);
+  //CAB.drawBisectorFromIntersection(true, true);
 
   ABC.drawIntersection();
 }

@@ -1,13 +1,31 @@
 class Site {
-    constructor (x, y) {
+    constructor (x, y, label) {
         this.x = x;
         this.y = y;
+        this.label = label
     }
 
     show() {
-        fill(255);
+        push();
+        fill(0);
         stroke(255);
-        ellipse(this.x, this.y, 5, 5);
+        strokeWeight(2);
+        ellipse(this.x, this.y, 15, 15);
+        pop();
+    }
+
+    showLabel() {
+        push();
+        
+        translate(this.x, this.y)
+        scale(1, -1);
+
+        noStroke();
+        fill('#6b6bff');
+        textSize(32);
+        text(this.label, 30, 0)
+
+        pop();
     }
 }
 
@@ -29,7 +47,7 @@ class SitePair {
     }
 
     getPerpendicularVec() {
-        return this.getSlopeVec().rotate(-PI/2)
+        return this.getSlopeVec().rotate(-PI/2);
     }
 
     getSlopeVec() {
@@ -130,9 +148,12 @@ class Intersection {
         let intersection = this.getIntersection()
 
         if (intersection != null) {
-            fill(84, 255, 107);
-            noStroke()
-            ellipse(intersection.x, intersection.y, 10, 10);
+            push();
+            fill(0);
+            stroke(255);
+            strokeWeight(2);
+            ellipse(intersection.x, intersection.y, 15, 15);
+            pop();
         }
 
     }
@@ -153,7 +174,7 @@ class Intersection {
     drawHalfLine_1(base, vec, myColor) {
         push();
         stroke(myColor);
-        strokeWeight(1.2);
+        strokeWeight(2);
         fill(myColor);
     
         translate(base.x, base.y);
@@ -166,7 +187,7 @@ class Intersection {
     drawHalfLine_2(base, vec, myColor) {
         push();
         stroke(myColor);
-        strokeWeight(1.2);
+        strokeWeight(2);
         fill(myColor);
     
         translate(base.x, base.y);
