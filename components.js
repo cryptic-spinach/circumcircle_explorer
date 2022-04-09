@@ -61,13 +61,18 @@ class SitePair {
         return {A: A, B: B, C: C}; // Ax + By = C
     }
 
-    drawBisector() {
+    drawBisectorUsingMidpoint(show_1, show_2) {
         let perpendicular = this.getPerpendicularVec();
         let midpoint = this.getMidpointSite();
-        this.drawLine(midpoint, perpendicular, '#ff575a');
+        if (show_1) {
+            this.drawHalfLine_1(midpoint, perpendicular, '#ff575a');
+        }
+        if (show_2) {
+            this.drawHalfLine_2(midpoint, perpendicular, '#ff575a');
+        }
     }
 
-    drawLine(base, vec, myColor) {
+    drawHalfLine_1(base, vec, myColor) {
         push();
         stroke(myColor);
         strokeWeight(1.2);
@@ -75,10 +80,26 @@ class SitePair {
     
         translate(base.x, base.y);
         vec.setMag(edgeLength)
-        line(-vec.x, -vec.y, vec.x, vec.y);
+        line(0, 0, vec.x, vec.y);
     
         pop();
     }
+
+    drawHalfLine_2(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(1.2);
+        fill(myColor);
+    
+        translate(base.x, base.y);
+        vec.setMag(edgeLength)
+        line(0, 0, -vec.x, -vec.y);
+    
+        pop();
+    }
+    
+
+    
 }
 
 class Intersection {
@@ -100,20 +121,56 @@ class Intersection {
         else {
             intersection = null;
         }
-        return intersection
+
+        return createVector(intersection._data[0][0], intersection._data[1][0]);
     }
 
     drawIntersection() {
         let intersection = this.getIntersection()
 
-        if (intersection == null) {
-            return;
+        if (intersection != null) {
+            fill(84, 255, 107);
+            noStroke()
+            ellipse(intersection.x, intersection.y, 10, 10);
         }
 
-        fill(84, 255, 107);
-        noStroke()
-        ellipse(intersection._data[0][0], intersection._data[1][0], 10, 10);
-        return;
+    }
+
+    drawBisectorFromIntersection(show_1, show_2) {
+        let perpendicular = this.pair_1.getPerpendicularVec();
+        let intersection = this.getIntersection();
+        if (show_1) {
+            this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
+        }
+        if (show_2) {
+            this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
+        }
+    }
+
+    drawHalfLine_1(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(1.2);
+        fill(myColor);
+    
+        translate(base.x, base.y);
+        vec.setMag(edgeLength)
+        line(0, 0, vec.x, vec.y);
+    
+        pop();
+    }
+
+    drawHalfLine_2(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(1.2);
+        fill(myColor);
+    
+        translate(base.x, base.y);
+        vec.setMag(edgeLength)
+        line(0, 0, -vec.x, -vec.y);
+    
+        pop();
     }
 }
   

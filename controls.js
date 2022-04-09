@@ -5,3 +5,7 @@ function controls_init() {
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
+
+function mousePressed() {
+    resizeCanvas(windowWidth, windowHeight);
+}
