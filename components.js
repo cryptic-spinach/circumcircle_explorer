@@ -15,10 +15,10 @@ class SitePair {
     constructor (site_1, site_2) {
         this.site_1 = site_1;
         this.site_2 = site_2;
-        this.coeffiecients = this.getStandardForm();
+        this.coeffiecients = this.getStandardFormOfBisector();
     }
     
-    getMidpoint() {
+    getMidpointSite() {
         let midx = (this.site_1.x + this.site_2.x)/2;
         let midy = (this.site_1.y + this.site_2.y)/2;
         return new Site(midx, midy);
@@ -36,14 +36,17 @@ class SitePair {
         return createVector(this.site_2.x - this.site_1.x, this.site_2.y - this.site_1.y);
     }
 
-    getStandardForm() {
+    getStandardFormOfBisector() {
         let A;
         let B;
         let C;
 
         let perpendicularVec = this.getPerpendicularVec();
-        let midpoint = this.getMidpoint()
+        let midpoint = this.getMidpointSite();
 
+        // If the x component of the vector is 0
+        // then there is no difference between the x values of the sites
+        // therefore the line is vertical
         if (perpendicularVec.x == 0) {
             A = 1;
             B = 0;
@@ -52,22 +55,22 @@ class SitePair {
         else {
             A = -this.getNumericSlope(perpendicularVec);
             B = 1;
-            C = -this.getNumericSlope(perpendicularVec) * midpoint.x + midpoint.y;
+            C = -this.getNumericSlope(perpendicularVec) * midpoint.x + midpoint.y; // y intercept =  -mx + y
         }
 
-        return {A: A, B: B, C: C};
+        return {A: A, B: B, C: C}; // Ax + By = C
     }
 
     drawBisector() {
         let perpendicular = this.getPerpendicularVec();
-        let midpoint = this.getMidpoint();
-        this.drawLine(midpoint, perpendicular, 'orange');
+        let midpoint = this.getMidpointSite();
+        this.drawLine(midpoint, perpendicular, '#ff575a');
     }
 
     drawLine(base, vec, myColor) {
         push();
         stroke(myColor);
-        strokeWeight(2);
+        strokeWeight(1.2);
         fill(myColor);
     
         translate(base.x, base.y);
@@ -85,16 +88,32 @@ class Intersection {
     }
 
     getIntersection() {
-        let A = math.matrix([[this.pair_1.coeffiecients.A, this.pair_1.coeffiecients.B], [this.pair_2.coeffiecients.A, this.pair_2.coeffiecients.B]])
-        let Ainv = math.inv(A)
-        let b = math.matrix([[this.pair_1.coeffiecients.C],[this.pair_2.coeffiecients.C]])
-        let Ainvb = math.multiply(Ainv, b);
+        let A = math.matrix([[this.pair_1.coeffiecients.A, this.pair_1.coeffiecients.B], [this.pair_2.coeffiecients.A, this.pair_2.coeffiecients.B]]);
+        
+        let intersection;
 
-        fill(255);
-        stroke(255);
-        ellipse(Ainvb._data[0][0], Ainvb._data[1][0], 20, 20);
+        if (math.det(A) != 0) {
+            let Ainv = math.inv(A);
+            let b = math.matrix([[this.pair_1.coeffiecients.C],[this.pair_2.coeffiecients.C]]);
+            intersection = math.multiply(Ainv, b);
+        } 
+        else {
+            intersection = null;
+        }
+        return intersection
+    }
 
-        return Ainvb._data
+    drawIntersection() {
+        let intersection = this.getIntersection()
+
+        if (intersection == null) {
+            return;
+        }
+
+        fill(84, 255, 107);
+        noStroke()
+        ellipse(intersection._data[0][0], intersection._data[1][0], 10, 10);
+        return;
     }
 }
   
