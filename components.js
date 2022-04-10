@@ -54,6 +54,11 @@ class SitePair {
         return createVector(this.site_2.x - this.site_1.x, this.site_2.y - this.site_1.y);
     }
 
+    getSegmentLength() {
+        let slopeVec = this.getSlopeVec();
+        return Math.sqrt(Math.pow(slopeVec.x, 2) + Math.pow(slopeVec.y, 2));
+    }
+
     getStandardFormOfBisector() {
         let A;
         let B;
@@ -94,6 +99,9 @@ class Intersection {
     constructor (pair_1, pair_2) {
         this.pair_1 = pair_1;
         this.pair_2 = pair_2;
+        this.intersection = this.getIntersection();
+        // this.d;
+        // this.r;
     }
 
     getIntersection() {
@@ -131,8 +139,6 @@ class Intersection {
     drawBisectorFromIntersection() {
         let intersection = this.getIntersection();
         if (intersection != null) {
-            // this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
-            // this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
             let intersectToMidpointVec = this.getIntersectToMidpointVec();
             this.drawFullLine(intersection, intersectToMidpointVec, '#ff575a');
         }
@@ -152,38 +158,18 @@ class Intersection {
         stroke(myColor);
         strokeWeight(2);
         fill(myColor);
+        // let midpoint = this.pair_1.getMidpointVec();
+        // this.d = this.getDistance(midpoint, this.pair_2.site_2);
+        // this.r = this.getCircumcirleRadius();
+        // line(this.pair_2.site_2.x, this.pair_2.site_2.y, midpoint.x, midpoint.y);
         translate(base.x, base.y);
         rotate(PI);
         vec.setMag(edgeLength);
         line(0, 0, vec.x, vec.y);
+        
         pop();
     }
 
-    drawHalfLine_1(base, vec, myColor) {
-        push();
-        stroke(myColor);
-        strokeWeight(2);
-        fill(myColor);
-    
-        translate(base.x, base.y);
-        vec.setMag(edgeLength);
-        line(0, 0, vec.x, vec.y);
-    
-        pop();
-    }
-
-    drawHalfLine_2(base, vec, myColor) {
-        push();
-        stroke(myColor);
-        strokeWeight(2);
-        fill(myColor);
-    
-        translate(base.x, base.y);
-        vec.setMag(edgeLength);
-        line(0, 0, -vec.x, -vec.y);
-    
-        pop();
-    }
 
     drawCircumcircle() {
         let intersection = this.getIntersection();
@@ -191,13 +177,23 @@ class Intersection {
             push();
             noFill();
             stroke(255);
-            let x = this.pair_1.site_1.x;
-            let y = this.pair_1.site_1.y;
-            let r = 2 * Math.sqrt(Math.pow(intersection.x - x, 2) + Math.pow(intersection.y - y, 2)) 
+            let r = this.getCircumcirleRadius();
             ellipse(intersection.x, intersection.y, r, r)
             pop();
         }
     }
+
+
+    getCircumcirleRadius() {
+        let x = this.pair_1.site_1.x;
+        let y = this.pair_1.site_1.y;
+        return 2 * Math.sqrt(Math.pow(this.intersection.x - x, 2) + Math.pow(this.intersection.y - y, 2));
+    }
+
+    getDistance(point_1, point_2) {
+        return 2 * Math.sqrt(Math.pow(point_1.x - point_2.x, 2) + Math.pow(point_1.y - point_2.y, 2));
+    }
+    
 }
 
 
