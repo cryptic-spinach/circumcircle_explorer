@@ -32,7 +32,7 @@ function draw() {
   BCA.drawBisectorFromIntersection();
   CAB.drawBisectorFromIntersection();
 
-  AB.drawSlopeVec();
+  //AB.drawSlopeVec();
   BC.drawSlopeVec();
   CA.drawSlopeVec();
 
@@ -50,4 +50,5 @@ function draw() {
   site_B.showLabel();
   site_C.showLabel();
   
+  BCA.getAngleBetween();
 }

@@ -107,8 +107,13 @@ class SitePair {
         translate(base.x, base.y);
         rotate(PI);
         line(0, 0, vec.x, vec.y);
+        rotate(vec.heading());
+        let arrowSize = 20;
+        translate(vec.mag() - arrowSize, 0);
+        triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
         pop();
     }
+
 }
 
 class Intersection {
@@ -178,8 +183,21 @@ class Intersection {
         rotate(PI);
         vec.setMag(edgeLength);
         line(0, 0, vec.x, vec.y);
-        
         pop();
+    }
+
+    getAngleBetween() {
+        let v1 = this.pair_1.getSlopeVec();
+        let v2 = this.pair_2.getSlopeVec();
+        let angle = v1.angleBetween(v2);
+        push()
+        stroke(255);
+        fill(255);
+        scale(1, -1);
+        textSize(32)
+        text(parseFloat(angle).toFixed(2), -600, -200);
+        pop();
+        return angle;
     }
 
 
