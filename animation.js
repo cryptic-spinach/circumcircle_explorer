@@ -8,8 +8,8 @@ function setup() {
   // site_B = new Site(random(min, max), random(min, max));
   // site_C = new Site(random(min, max), random(min, max));
 
-  site_A = new Site(350, 200, 'A');
-  site_B = new Site(-400, -200, 'B');
+  site_A = new Site(150, 150, 'A');
+  site_B = new Site(-150, -150, 'B');
   site_C = new Site(500, -100, 'C');
 }
   
@@ -18,14 +18,6 @@ function draw() {
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
 
-  site_A.show();
-  site_B.show();
-  site_C.show();
-
-  site_A.showLabel();
-  site_B.showLabel();
-  site_C.showLabel();
-
   AB = new SitePair(site_A, site_B);
   BC = new SitePair(site_B, site_C);
   CA = new SitePair(site_A, site_C);
@@ -33,6 +25,8 @@ function draw() {
   ABC = new Intersection(AB, BC);
   BCA = new Intersection(BC, CA);
   CAB = new Intersection(CA, AB);
+
+  ABC.drawCircumcircle();
 
   ABC.drawBisectorFromIntersection();
   BCA.drawBisectorFromIntersection();
@@ -43,4 +37,13 @@ function draw() {
   CA.drawMidpoint();
 
   ABC.drawIntersection();
+
+  site_A.show();
+  site_B.show();
+  site_C.show();
+
+  site_A.showLabel();
+  site_B.showLabel();
+  site_C.showLabel();
+  
 }

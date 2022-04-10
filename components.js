@@ -184,6 +184,20 @@ class Intersection {
     
         pop();
     }
+
+    drawCircumcircle() {
+        let intersection = this.getIntersection();
+        if (intersection != null) {
+            push();
+            noFill();
+            stroke(255);
+            let x = this.pair_1.site_1.x;
+            let y = this.pair_1.site_1.y;
+            let r = 2 * Math.sqrt(Math.pow(intersection.x - x, 2) + Math.pow(intersection.y - y, 2)) 
+            ellipse(intersection.x, intersection.y, r, r)
+            pop();
+        }
+    }
 }
 
 
