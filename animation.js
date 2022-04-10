@@ -1,6 +1,6 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  edgeLength = Math.sqrt(Math.pow(windowWidth, 2) + Math.pow(windowHeight, 2));
+  edgeLength = 10000;
 
   // let min = -400;
   // let max = 400;
@@ -37,6 +37,10 @@ function draw() {
   ABC.drawBisectorFromIntersection();
   BCA.drawBisectorFromIntersection();
   CAB.drawBisectorFromIntersection();
+
+  AB.drawMidpoint();
+  BC.drawMidpoint();
+  CA.drawMidpoint();
 
   ABC.drawIntersection();
 }

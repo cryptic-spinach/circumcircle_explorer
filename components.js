@@ -36,10 +36,10 @@ class SitePair {
         this.coeffiecients = this.getStandardFormOfBisector();
     }
     
-    getMidpointSite() {
+    getMidpointVec() {
         let midx = (this.site_1.x + this.site_2.x)/2;
         let midy = (this.site_1.y + this.site_2.y)/2;
-        return new Site(midx, midy);
+        return createVector(midx, midy);
     }
 
     getNumericSlope(vec) {
@@ -60,7 +60,7 @@ class SitePair {
         let C;
 
         let perpendicularVec = this.getPerpendicularVec();
-        let midpoint = this.getMidpointSite();
+        let midpoint = this.getMidpointVec();
 
         // If the x component of the vector is 0
         // then there is no difference between the x values of the sites
@@ -79,6 +79,15 @@ class SitePair {
         return {A: A, B: B, C: C}; // Ax + By = C
     }    
     
+    drawMidpoint() {
+        push();
+        let midpoint = this.getMidpointVec();
+        fill(0);
+        stroke('#00ba51');
+        strokeWeight(2);
+        ellipse(midpoint.x, midpoint.y, 15, 15);
+        pop();
+    }
 }
 
 class Intersection {
@@ -120,12 +129,34 @@ class Intersection {
     }
 
     drawBisectorFromIntersection() {
-        let perpendicular = this.pair_1.getPerpendicularVec();
         let intersection = this.getIntersection();
         if (intersection != null) {
-            this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
-            this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
+            // this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
+            // this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
+            let intersectToMidpointVec = this.getIntersectToMidpointVec();
+            this.drawFullLine(intersection, intersectToMidpointVec, '#ff575a');
         }
+        else {
+            console.log('Intersection is null');
+        }
+    }
+
+    getIntersectToMidpointVec() {
+        let intersection = this.getIntersection();
+        let midpoint = this.pair_1.getMidpointVec();
+        return createVector(intersection.x - midpoint.x, intersection.y -  midpoint.y);
+    }
+
+    drawFullLine(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(2);
+        fill(myColor);
+        translate(base.x, base.y);
+        rotate(PI);
+        vec.setMag(edgeLength);
+        line(0, 0, vec.x, vec.y);
+        pop();
     }
 
     drawHalfLine_1(base, vec, myColor) {
@@ -135,7 +166,7 @@ class Intersection {
         fill(myColor);
     
         translate(base.x, base.y);
-        vec.setMag(edgeLength)
+        vec.setMag(edgeLength);
         line(0, 0, vec.x, vec.y);
     
         pop();
@@ -148,10 +179,12 @@ class Intersection {
         fill(myColor);
     
         translate(base.x, base.y);
-        vec.setMag(edgeLength)
+        vec.setMag(edgeLength);
         line(0, 0, -vec.x, -vec.y);
     
         pop();
     }
 }
+
+
   
