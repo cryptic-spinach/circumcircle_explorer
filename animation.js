@@ -32,10 +32,14 @@ function draw() {
   BCA.drawBisectorFromIntersection();
   CAB.drawBisectorFromIntersection();
 
+  AB.drawSlopeVec();
+  BC.drawSlopeVec();
+  CA.drawSlopeVec();
+
   AB.drawMidpoint();
   BC.drawMidpoint();
   CA.drawMidpoint();
-
+  
   ABC.drawIntersection();
 
   site_A.show();

@@ -93,6 +93,22 @@ class SitePair {
         ellipse(midpoint.x, midpoint.y, 15, 15);
         pop();
     }
+
+    drawSlopeVec() {
+        let slopeVec = this.getSlopeVec();
+        this.drawFullLine(this.site_2, slopeVec,'#23ded8')
+    }
+
+    drawFullLine(base, vec, myColor) {
+        push();
+        stroke(myColor);
+        strokeWeight(1);
+        fill(myColor);
+        translate(base.x, base.y);
+        rotate(PI);
+        line(0, 0, vec.x, vec.y);
+        pop();
+    }
 }
 
 class Intersection {
@@ -158,10 +174,6 @@ class Intersection {
         stroke(myColor);
         strokeWeight(2);
         fill(myColor);
-        // let midpoint = this.pair_1.getMidpointVec();
-        // this.d = this.getDistance(midpoint, this.pair_2.site_2);
-        // this.r = this.getCircumcirleRadius();
-        // line(this.pair_2.site_2.x, this.pair_2.site_2.y, midpoint.x, midpoint.y);
         translate(base.x, base.y);
         rotate(PI);
         vec.setMag(edgeLength);
