@@ -77,46 +77,7 @@ class SitePair {
         }
 
         return {A: A, B: B, C: C}; // Ax + By = C
-    }
-
-    drawBisectorUsingMidpoint(show_1, show_2) {
-        let perpendicular = this.getPerpendicularVec();
-        let midpoint = this.getMidpointSite();
-        if (show_1) {
-            this.drawHalfLine_1(midpoint, perpendicular, '#ff575a');
-        }
-        if (show_2) {
-            this.drawHalfLine_2(midpoint, perpendicular, '#ff575a');
-        }
-    }
-
-    drawHalfLine_1(base, vec, myColor) {
-        push();
-        stroke(myColor);
-        strokeWeight(1.2);
-        fill(myColor);
-    
-        translate(base.x, base.y);
-        vec.setMag(edgeLength)
-        line(0, 0, vec.x, vec.y);
-    
-        pop();
-    }
-
-    drawHalfLine_2(base, vec, myColor) {
-        push();
-        stroke(myColor);
-        strokeWeight(1.2);
-        fill(myColor);
-    
-        translate(base.x, base.y);
-        vec.setMag(edgeLength)
-        line(0, 0, -vec.x, -vec.y);
-    
-        pop();
-    }
-    
-
+    }    
     
 }
 
@@ -158,16 +119,12 @@ class Intersection {
 
     }
 
-    drawBisectorFromIntersection(show_1, show_2) {
+    drawBisectorFromIntersection() {
         let perpendicular = this.pair_1.getPerpendicularVec();
         let intersection = this.getIntersection();
         if (intersection != null) {
-            if (show_1) {
-                this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
-            }
-            if (show_2) {
-                this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
-            }
+            this.drawHalfLine_1(intersection, perpendicular, '#ff575a');
+            this.drawHalfLine_2(intersection, perpendicular, '#ff575a');
         }
     }
 

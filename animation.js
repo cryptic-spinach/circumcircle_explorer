@@ -34,9 +34,9 @@ function draw() {
   BCA = new Intersection(BC, CA);
   CAB = new Intersection(CA, AB);
 
-  ABC.drawBisectorFromIntersection(true, true);
-  //BCA.drawBisectorFromIntersection(true, true);
-  //CAB.drawBisectorFromIntersection(true, true);
+  ABC.drawBisectorFromIntersection();
+  BCA.drawBisectorFromIntersection();
+  CAB.drawBisectorFromIntersection();
 
   ABC.drawIntersection();
 }
