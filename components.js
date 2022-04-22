@@ -35,12 +35,7 @@ class SitePair {
         this.site_2 = site_2;
         this.coeffiecients = this.getStandardFormOfBisector();
     }
-    
-    // getMidpointVec(first_site = this.site_1, second_site = this.site_2) {
-    //     let midx = (first_site.x + second_site.x)/2;
-    //     let midy = (first_site.y + second_site.y)/2;
-    //     return createVector(midx, midy);
-    // }
+
 
     getMidpointVec() {
         let midx = (this.site_1.x + this.site_2.x)/2;
