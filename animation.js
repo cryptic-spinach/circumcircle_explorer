@@ -20,27 +20,33 @@ function draw() {
 
   AB = new SitePair(site_A, site_B);
   BC = new SitePair(site_B, site_C);
-  CA = new SitePair(site_A, site_C);
+  CA = new SitePair(site_C, site_A);
 
   ABC = new Intersection(AB, BC);
   BCA = new Intersection(BC, CA);
   CAB = new Intersection(CA, AB);
 
-  ABC.drawCircumcircle();
+
+  // ABC.drawCircumcircle(); // This method can be called on ony permutation of ABC
+
 
   ABC.drawBisectorFromIntersection();
   BCA.drawBisectorFromIntersection();
   CAB.drawBisectorFromIntersection();
 
-  //AB.drawSlopeVec();
-  BC.drawSlopeVec();
-  CA.drawSlopeVec();
+  // AB.drawSlopeVec();
+  // BC.drawSlopeVec();
+  // CA.drawSlopeVec();
 
-  AB.drawMidpoint();
-  BC.drawMidpoint();
-  CA.drawMidpoint();
+  // ABC.displayAngleBetweenValue();
+  // BCA.displayAngleBetweenValue();
+  // CAB.displayAngleBetweenValue()
+
+  // AB.drawMidpoint();
+  // BC.drawMidpoint();
+  // CA.drawMidpoint();
   
-  ABC.drawIntersection();
+  // ABC.drawIntersection(); // This method can be called on ony permutation of ABC
 
   site_A.show();
   site_B.show();
@@ -50,5 +56,4 @@ function draw() {
   site_B.showLabel();
   site_C.showLabel();
   
-  BCA.getAngleBetween();
 }

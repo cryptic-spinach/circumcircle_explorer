@@ -36,6 +36,12 @@ class SitePair {
         this.coeffiecients = this.getStandardFormOfBisector();
     }
     
+    // getMidpointVec(first_site = this.site_1, second_site = this.site_2) {
+    //     let midx = (first_site.x + second_site.x)/2;
+    //     let midy = (first_site.y + second_site.y)/2;
+    //     return createVector(midx, midy);
+    // }
+
     getMidpointVec() {
         let midx = (this.site_1.x + this.site_2.x)/2;
         let midy = (this.site_1.y + this.site_2.y)/2;
@@ -96,10 +102,10 @@ class SitePair {
 
     drawSlopeVec() {
         let slopeVec = this.getSlopeVec();
-        this.drawFullLine(this.site_2, slopeVec,'#23ded8')
+        this.drawVec(this.site_2, slopeVec, '#23ded8')
     }
 
-    drawFullLine(base, vec, myColor) {
+    drawVec(base, vec, myColor) {
         push();
         stroke(myColor);
         strokeWeight(1);
@@ -120,9 +126,8 @@ class Intersection {
     constructor (pair_1, pair_2) {
         this.pair_1 = pair_1;
         this.pair_2 = pair_2;
+        this.pair_3 = new SitePair(pair_1.site_1, pair_2.site_2);
         this.intersection = this.getIntersection();
-        // this.d;
-        // this.r;
     }
 
     getIntersection() {
@@ -161,7 +166,7 @@ class Intersection {
         let intersection = this.getIntersection();
         if (intersection != null) {
             let intersectToMidpointVec = this.getIntersectToMidpointVec();
-            this.drawFullLine(intersection, intersectToMidpointVec, '#ff575a');
+            this.drawLine(intersection, intersectToMidpointVec, '#ff575a');
         }
         else {
             console.log('Intersection is null');
@@ -170,11 +175,11 @@ class Intersection {
 
     getIntersectToMidpointVec() {
         let intersection = this.getIntersection();
-        let midpoint = this.pair_1.getMidpointVec();
+        let midpoint = this.pair_3.getMidpointVec();
         return createVector(intersection.x - midpoint.x, intersection.y -  midpoint.y);
     }
 
-    drawFullLine(base, vec, myColor) {
+    drawLine(base, vec, myColor) {
         push();
         stroke(myColor);
         strokeWeight(2);
@@ -182,22 +187,40 @@ class Intersection {
         translate(base.x, base.y);
         rotate(PI);
         vec.setMag(edgeLength);
-        line(0, 0, vec.x, vec.y);
+
+        let needsFlip = this.getNeedsFlip();
+        //let needsFlip = false;
+
+        if (needsFlip) {
+            line(0, 0, -vec.x, -vec.y);
+        }
+        else {
+            line(0, 0, vec.x, vec.y);
+        }
         pop();
     }
 
+    getNeedsFlip() {
+        let angle = this.getAngleBetween();
+        return (angle > -PI && angle < -PI/2) || (angle > PI/2 && angle < PI);
+    }
+
     getAngleBetween() {
-        let v1 = this.pair_1.getSlopeVec();
+        let v1 = this.pair_1.getSlopeVec().mult(-1);
         let v2 = this.pair_2.getSlopeVec();
         let angle = v1.angleBetween(v2);
-        push()
+        return angle;
+    }
+
+    displayAngleBetweenValue() {
+        let angle = this.getAngleBetween();
+        push();
         stroke(255);
         fill(255);
         scale(1, -1);
-        textSize(32)
+        textSize(32);
         text(parseFloat(angle).toFixed(2), -600, -200);
         pop();
-        return angle;
     }
 
 
