@@ -1,6 +1,6 @@
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  edgeLength = 10000;
+  edgeLength = 100000;
 
   // let min = -400;
   // let max = 400;
@@ -46,7 +46,7 @@ function draw() {
   // BC.drawMidpoint();
   // CA.drawMidpoint();
   
-  // ABC.drawIntersection(); // This method can be called on ony permutation of ABC
+  ABC.drawIntersection(); // This method can be called on ony permutation of ABC
 
   site_A.show();
   site_B.show();
