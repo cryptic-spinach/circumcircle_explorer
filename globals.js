@@ -12,4 +12,14 @@ let CAB;
 
 let controls = {
     showCircumcircle: false,
+    showBisectors: false,
+    showSegments: false,
+    showMidpoints: false,
+    showIntersection: false,
+    showSites: false,
+    showLabels: false
 };
+
+let hiddenControls = {
+    showArrowTip: false
+}

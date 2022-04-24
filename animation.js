@@ -31,30 +31,36 @@ function draw() {
 
   if (controls.showCircumcircle) ABC.drawCircumcircle(); // This method can be called on ony permutation of ABC
 
-  ABC.drawBisectorFromIntersection();
-  BCA.drawBisectorFromIntersection();
-  CAB.drawBisectorFromIntersection();
+  if (controls.showBisectors){
+    ABC.drawBisectorFromIntersection();
+    BCA.drawBisectorFromIntersection();
+    CAB.drawBisectorFromIntersection();
+  }
 
-  AB.drawSlopeVec();
-  BC.drawSlopeVec();
-  CA.drawSlopeVec();
+  if (controls.showSegments) {
+    AB.drawSlopeVec();
+    BC.drawSlopeVec();
+    CA.drawSlopeVec();  
+  }
 
-  // ABC.displayAngleBetweenValue();
-  // BCA.displayAngleBetweenValue();
-  // CAB.displayAngleBetweenValue()
-
-  // AB.drawMidpoint();
-  // BC.drawMidpoint();
-  // CA.drawMidpoint();
+  if (controls.showMidpoints) {
+    AB.drawMidpoint();
+    BC.drawMidpoint();
+    CA.drawMidpoint();
+  }
   
-  ABC.drawIntersection(); // This method can be called on ony permutation of ABC
+  if (controls.showIntersection) ABC.drawIntersection(); // This method can be called on ony permutation of ABC
 
-  site_A.show();
-  site_B.show();
-  site_C.show();
+  if (controls.showSites) {
+    site_A.show();
+    site_B.show();
+    site_C.show();
+  }
 
-  site_A.showLabel();
-  site_B.showLabel();
-  site_C.showLabel();
+  if(controls.showLabels) {
+    site_A.showLabel();
+    site_B.showLabel();
+    site_C.showLabel();
+  }
   
 }

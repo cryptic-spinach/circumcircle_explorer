@@ -108,10 +108,12 @@ class SitePair {
         translate(base.x, base.y);
         rotate(PI);
         line(0, 0, vec.x, vec.y);
-        rotate(vec.heading());
-        let arrowSize = 20;
-        translate(vec.mag() - arrowSize, 0);
-        triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+        if(hiddenControls.showArrowTip) {
+            rotate(vec.heading());
+            let arrowSize = 20;
+            translate(vec.mag() - arrowSize, 0);
+            triangle(0, arrowSize / 2, 0, -arrowSize / 2, arrowSize, 0);
+        }
         pop();
     }
 
