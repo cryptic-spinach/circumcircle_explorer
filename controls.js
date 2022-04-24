@@ -16,7 +16,19 @@ function windowResized() {
     resizeCanvas(windowWidth, windowHeight);
 }
 
+function mousePressed() {
+    if (dist(site_C.x, site_C.y, trueMouseX, trueMouseY) < site_C.r) {
+        site_C.selected = true;
+    }
+}
+
 function mouseDragged() {
-    site_C.x = mouseX - windowWidth/2
-    site_C.y = -mouseY + windowHeight/2;
+    if (site_C.selected) {
+        site_C.x = trueMouseX;
+        site_C.y = trueMouseY;
+    }
+}
+
+function mouseReleased() {
+    site_C.selected = false;
 }

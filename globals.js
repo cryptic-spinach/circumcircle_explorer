@@ -8,16 +8,17 @@ let AC;
 let ABC;
 let BCA;
 let CAB;
-
+let trueMouseX;
+let trueMouseY;
 
 let controls = {
     showCircumcircle: false,
     showBisectors: false,
-    showSegments: false,
+    showSegments: true,
     showMidpoints: false,
     showIntersection: false,
-    showSites: false,
-    showLabels: false
+    showSites: true,
+    showLabels: true
 };
 
 let hiddenControls = {

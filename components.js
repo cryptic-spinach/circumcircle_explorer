@@ -2,7 +2,9 @@ class Site {
     constructor (x, y, label) {
         this.x = x;
         this.y = y;
+        this.r = 15;
         this.label = label
+        this.selected = false;
     }
 
     show() {
@@ -10,7 +12,7 @@ class Site {
         fill(0);
         stroke(255);
         strokeWeight(2);
-        ellipse(this.x, this.y, 15, 15);
+        ellipse(this.x, this.y, this.r, this.r);
         pop();
     }
 

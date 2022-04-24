@@ -20,6 +20,9 @@ function draw() {
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
 
+  trueMouseX = (mouseX - windowWidth/2);
+  trueMouseY = -(mouseY - windowHeight/2);
+
   AB = new SitePair(site_A, site_B);
   BC = new SitePair(site_B, site_C);
   CA = new SitePair(site_C, site_A);
