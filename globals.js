@@ -8,3 +8,8 @@ let AC;
 let ABC;
 let BCA;
 let CAB;
+
+
+let controls = {
+    showCircumcircle: false,
+};

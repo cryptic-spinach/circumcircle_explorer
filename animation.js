@@ -2,6 +2,8 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   edgeLength = 100000;
 
+  controls_init();
+
   // let min = -400;
   // let max = 400;
   // site_A = new Site(random(min, max), random(min, max));
@@ -27,16 +29,15 @@ function draw() {
   CAB = new Intersection(CA, AB);
 
 
-  // ABC.drawCircumcircle(); // This method can be called on ony permutation of ABC
-
+  if (controls.showCircumcircle) ABC.drawCircumcircle(); // This method can be called on ony permutation of ABC
 
   ABC.drawBisectorFromIntersection();
   BCA.drawBisectorFromIntersection();
   CAB.drawBisectorFromIntersection();
 
-  // AB.drawSlopeVec();
-  // BC.drawSlopeVec();
-  // CA.drawSlopeVec();
+  AB.drawSlopeVec();
+  BC.drawSlopeVec();
+  CA.drawSlopeVec();
 
   // ABC.displayAngleBetweenValue();
   // BCA.displayAngleBetweenValue();

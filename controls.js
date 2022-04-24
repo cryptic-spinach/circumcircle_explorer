@@ -1,6 +1,10 @@
 function controls_init() {
     gui = new dat.GUI();
+
+    gui.width = 300;
+    gui.add(controls, "showCircumcircle").name("Circumcircle");
 }
+
 
 function windowResized() {
     resizeCanvas(windowWidth, windowHeight);

@@ -184,7 +184,6 @@ class Intersection {
         vec.setMag(edgeLength);
 
         let needsFlip = this.getNeedsFlip();
-        //let needsFlip = false;
 
         if (needsFlip) {
             line(0, 0, -vec.x, -vec.y);
