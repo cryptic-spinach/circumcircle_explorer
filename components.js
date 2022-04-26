@@ -10,7 +10,7 @@ class Site {
     show() {
         push();
         fill(0);
-        stroke(255);
+        stroke(palette.siteColor);
         strokeWeight(2);
         ellipse(this.x, this.y, this.r, this.r);
         pop();
@@ -23,7 +23,7 @@ class Site {
         scale(1, -1);
 
         noStroke();
-        fill('#6b6bff');
+        fill(palette.labelColor);
         textSize(32);
         text(this.label, 30, 0)
 
@@ -91,7 +91,7 @@ class SitePair {
         push();
         let midpoint = this.getMidpointVec();
         fill(0);
-        stroke('#00ba51');
+        stroke(palette.midpointColor);
         strokeWeight(2);
         ellipse(midpoint.x, midpoint.y, 15, 15);
         pop();
@@ -99,7 +99,7 @@ class SitePair {
 
     drawSlopeVec() {
         let slopeVec = this.getSlopeVec();
-        this.drawVec(this.site_2, slopeVec, '#23ded8')
+        this.drawVec(this.site_2, slopeVec, palette.segmentColor)
     }
 
     drawVec(base, vec, myColor) {
@@ -153,7 +153,7 @@ class Intersection {
         if (intersection != null) {
             push();
             fill(0);
-            stroke(255);
+            stroke(palette.intersectionColor);
             strokeWeight(2);
             ellipse(intersection.x, intersection.y, 15, 15);
             pop();
@@ -165,7 +165,7 @@ class Intersection {
         let intersection = this.getIntersection();
         if (intersection != null) {
             let intersectToMidpointVec = this.getIntersectToMidpointVec();
-            this.drawLine(intersection, intersectToMidpointVec, '#ff575a');
+            this.drawLine(intersection, intersectToMidpointVec, palette.bisectorColor);
         }
         else {
             console.log('Intersection is null');
@@ -227,7 +227,7 @@ class Intersection {
         if (intersection != null) {
             push();
             noFill();
-            stroke(255);
+            stroke(palette.circumcircleColor);
             let r = this.getCircumcirleRadius();
             ellipse(intersection.x, intersection.y, r, r)
             pop();

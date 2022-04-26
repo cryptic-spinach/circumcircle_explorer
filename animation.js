@@ -16,7 +16,7 @@ function setup() {
 }
   
 function draw() {
-  background(25);
+  background(palette.backgroundColor);
   translate(windowWidth/2, windowHeight/2);
   scale(1, -1);
 
