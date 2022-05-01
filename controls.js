@@ -6,7 +6,7 @@ function controls_init() {
     gui.add(controls, "showBisectors").name("Bisectors");
     gui.add(controls, "showSegments").name("Segments");
     gui.add(controls, "showMidpoints").name("Midpoints");
-    gui.add(controls, "showIntersection").name("Intersection");
+    gui.add(controls, "showIntersection").name("Circumcenter");
     gui.add(controls, "showSites").name("Sites");
     gui.add(controls, "showLabels").name("Labels");
 
