@@ -22,7 +22,7 @@ let controls = {
 };
 
 palette = { 
-    backgroundColor: "#1e1e55",
+    backgroundColor: "#2f2f2f",
     circumcircleColor: "#ffffff", 
     bisectorColor: "#ff9271", 
     segmentColor: "#20c5c5", 

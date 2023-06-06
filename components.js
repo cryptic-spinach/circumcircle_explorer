@@ -167,9 +167,6 @@ class Intersection {
             let intersectToMidpointVec = this.getIntersectToMidpointVec();
             this.drawLine(intersection, intersectToMidpointVec, palette.bisectorColor);
         }
-        else {
-            console.log('Intersection is null');
-        }
     }
 
     getIntersectToMidpointVec() {
