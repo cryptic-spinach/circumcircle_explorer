@@ -8,7 +8,7 @@ function controls_init() {
     gui.add(controls, "showMidpoints").name("Midpoints");
     gui.add(controls, "showIntersection").name("Circumcenter");
     gui.add(controls, "showSites").name("Sites");
-    gui.add(controls, "showLabels").name("Labels");
+    // gui.add(controls, "showLabels").name("Labels");
 
     // gui.addColor(palette, "backgroundColor").name("Background");
 

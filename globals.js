@@ -18,7 +18,7 @@ let controls = {
     showMidpoints: false,
     showIntersection: false,
     showSites: true,
-    showLabels: true
+    showLabels: false
 };
 
 palette = { 
