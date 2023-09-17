@@ -25,7 +25,7 @@ class Site {
         noStroke();
         fill(palette.labelColor);
         textSize(32);
-        text(this.label, 30, 0)
+        text(this.label, 30, -10)
 
         pop();
     }
@@ -105,7 +105,7 @@ class SitePair {
     drawVec(base, vec, myColor) {
         push();
         stroke(myColor);
-        strokeWeight(1);
+        strokeWeight(2);
         fill(myColor);
         translate(base.x, base.y);
         rotate(PI);
@@ -225,6 +225,7 @@ class Intersection {
             push();
             noFill();
             stroke(palette.circumcircleColor);
+            strokeWeight(2);
             let r = this.getCircumcirleRadius();
             ellipse(intersection.x, intersection.y, r, r)
             pop();

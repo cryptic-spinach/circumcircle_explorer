@@ -10,9 +10,9 @@ function setup() {
   // site_B = new Site(random(min, max), random(min, max));
   // site_C = new Site(random(min, max), random(min, max));
 
-  site_A = new Site(150, 150, 'A');
-  site_B = new Site(-150, -150, 'B');
-  site_C = new Site(500, -100, 'C');
+  site_A = new Site(25, -100, 'A');
+  site_B = new Site(-300, -25, 'B');
+  site_C = new Site(-150, 200, 'C');
 }
   
 function draw() {

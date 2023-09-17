@@ -12,24 +12,24 @@ let trueMouseX;
 let trueMouseY;
 
 let controls = {
-    showCircumcircle: false,
+    showCircumcircle: true,
     showBisectors: true,
-    showSegments: false,
-    showMidpoints: false,
-    showIntersection: false,
+    showSegments: true,
+    showMidpoints: true,
+    showIntersection: true,
     showSites: true,
     showLabels: true
 };
 
 palette = { 
-    backgroundColor: "#2f2f2f",
+    backgroundColor: "#157a7b",
     circumcircleColor: "#ffffff", 
-    bisectorColor: "#ff9271", 
-    segmentColor: "#20c5c5", 
-    midpointColor: "#1beb95", 
-    intersectionColor: "#fffe66", 
+    bisectorColor: "#ffffff", 
+    segmentColor: "#ffffff", 
+    midpointColor: "#ffffff", 
+    intersectionColor: "#ffffff", 
     siteColor: "#ffffff", 
-    labelColor: "#1fced9" 
+    labelColor: "#ffffff" 
 }
 
 let hiddenControls = {
