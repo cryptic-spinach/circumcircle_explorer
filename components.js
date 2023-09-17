@@ -9,7 +9,7 @@ class Site {
 
     show() {
         push();
-        fill(0);
+        fill(palette.siteInteriorColor);
         stroke(palette.siteColor);
         strokeWeight(2);
         ellipse(this.x, this.y, this.r, this.r);

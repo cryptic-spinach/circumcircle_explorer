@@ -19,6 +19,7 @@ function controls_init() {
     // gui.addColor(palette, "midpointColor").name("Midpoint");
     // gui.addColor(palette, "siteColor").name("Site");
     // gui.addColor(palette, "labelColor").name("Label");
+    // gui.addColor(palette, "siteInteriorColor").name("Site Interior");
     
 }
 

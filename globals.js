@@ -29,7 +29,8 @@ palette = {
     midpointColor: "#ffffff", 
     intersectionColor: "#ffffff", 
     siteColor: "#ffffff", 
-    labelColor: "#ffffff" 
+    labelColor: "#ffffff", 
+    siteInteriorColor: "#db4c42",
 }
 
 let hiddenControls = {
